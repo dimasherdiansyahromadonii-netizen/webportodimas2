@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio & Jadwal Kuliah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="wrap">
+<button class="nav-tab active" type="button" data-tab="profil" aria-selected="true">Profil</button>
+<button class="nav-tab" type="button" data-tab="riwayat" aria-selected="false">Riwayat Pendidikan</button>
+<button class="nav-tab" type="button" data-tab="proyek" aria-selected="false">Proyek</button>
+<button class="nav-tab" type="button" data-tab="jadwal" aria-selected="false">Jadwal</button>
+<button class="nav-tab" type="button" data-tab="tugas" aria-selected="false">Tugas</button>
+<button class="nav-tab" type="button" data-tab="kontak" aria-selected="false">Kontak</button>
+</div></nav>
+
+<main class="wrap">
+<header class="hero tab-panel active" id="profil" data-panel="profil">
+<div class="hero-copy">
+<div class="profile-identity">
+<img class="profile-photo" src="/asset/foto3.jpeg" alt="Foto profil">
+<div class="profile-meta">
+<div class="eyebrow">Mahasiswa • Web Developer • Kreatif</div>
+<h1 id="pName"></h1>
+<div class="role" id="pRole"></div>
+</div>
+</div>
+<p id="pBio"></p>
+<div class="hero-actions row" style="justify-content:flex-start;gap:10px;flex-wrap:wrap">
+<a id="pMail" style="text-decoration:none;background:linear-gradient(135deg,var(--accent),var(--accent-soft));color:var(--accent-ink);padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px;box-shadow:0 12px 30px rgba(86,59,33,.18)">Hubungi saya</a>
+<button id="editProfile">Edit profil</button>
+</div>
+<div class="stats-row">
+<span>3+ Proyek</span>
+<span>Focus UI/UX</span>
+<span>Ready to collaborate</span>
+</div>
+</div>
+<aside class="today" aria-live="polite">
+<h3 id="todayLabel">Hari ini</h3>
+<div class="big" id="nextClass"></div>
+<div class="sub" id="nextClassSub"></div>
+<ul id="soon"></ul>
+</aside>
+</header>
+
+<section class="tab-panel" id="riwayat" data-panel="riwayat">
+<div class="sh"><h2>Riwayat Pendidikan</h2><span>Jejak pendidikan dan pengalaman akademik</span></div>
+<div class="timeline" id="education"></div>
+</section>
+
+<section class="tab-panel" id="proyek" data-panel="proyek">
+<div class="sh"><h2>Proyek</h2><span>Karya dan tugas besar yang pernah saya kerjakan</span></div>
+<form class="add" id="projForm">
+<p class="hint" hidden>Mode edit proyek</p>
+<label>Judul<input name="title" required maxlength="60"></label>
+<label>Deskripsi<input name="desc" required maxlength="160"></label>
+<label>Teknologi (pisahkan koma)<input name="tags" placeholder="HTML, CSS, JS"></label>
+<label>Tautan (opsional)<input name="url" type="url" placeholder="https://"></label>
+<button class="pri" type="submit">Tambah proyek</button>
+<button type="button" class="cancel" hidden>Batal</button>
+</form>
+<div class="grid" id="projects"></div>
+</section>
+
+<section class="tab-panel" id="jadwal" data-panel="jadwal">
+<div class="sh"><h2>Jadwal kuliah</h2><span>Hari ini ditandai garis biru</span></div>
+<form class="add" id="courseForm">
+<p class="hint" hidden>Mode edit jadwal</p>
+<label>Mata kuliah<input name="name" required maxlength="50"></label>
+<label>Hari<select name="day" id="daySel"></select></label>
+<label>Mulai<input name="start" type="text" inputmode="numeric" pattern="([0-1]?[0-9]|2[0-3])[:.][0-5][0-9]" placeholder="13:00 atau 13.00" required value="08:00"></label>
+<label>Selesai<input name="end" type="text" inputmode="numeric" pattern="([0-1]?[0-9]|2[0-3])[:.][0-5][0-9]" placeholder="13:00 atau 13.00" required value="09:40"></label>
+<label>Ruang<input name="room" maxlength="20" placeholder="Lab 2"></label>
+<button class="pri" type="submit">Tambah jadwal</button>
+<button type="button" class="cancel" hidden>Batal</button>
+</form>
+<div class="days" id="days"></div>
+</section>
+
+<section class="tab-panel" id="tugas" data-panel="tugas">
+<div class="sh"><h2>Tugas</h2><span id="taskCount"></span></div>
+<form class="add" id="taskForm">
+<p class="hint" hidden>Mode edit tugas</p>
+<label>Judul tugas<input name="title" required maxlength="80"></label>
+<label>Mata kuliah<input name="course" list="courseList" maxlength="50"><datalist id="courseList"></datalist></label>
+<label>Tenggat<input name="due" type="date" required></label>
+<label>File tugas selesai<input name="attachment" type="file" accept="*/*"></label>
+<label class="checkbox-row"><input name="done" type="checkbox"> Sudah dikumpulkan / tugas selesai</label>
+<button class="pri" type="submit">Upload tugas selesai</button>
+<button type="button" class="cancel" hidden>Batal</button>
+</form>
+<div class="filters" role="group" aria-label="Filter tugas">
+<button data-f="all" aria-pressed="true">Semua</button>
+<button data-f="open" aria-pressed="false">Belum selesai</button>
+<button data-f="done" aria-pressed="false">Selesai</button>
+</div>
+<div id="tasks"></div>
+</section>
+
+<section class="tab-panel" id="kontak" data-panel="kontak">
+<div class="sh"><h2>Kontak</h2><span>Media komunikasi dan sosial</span></div>
+<div class="contact-grid" id="contact"></div>
+</section>
+</main>
+
+<footer><div class="wrap">Data tersimpan di browser (localStorage).</div></footer>
+
+<dialog id="dlg">
+<form method="dialog">
+<h3 style="font-size:22px">Edit profil</h3>
+<label for="fName">Nama</label><input id="fName" maxlength="50">
+<label for="fRole">Jurusan / peran</label><input id="fRole" maxlength="70">
+<label for="fBio">Tentang saya</label><textarea id="fBio" rows="4" maxlength="320"></textarea>
+<label for="fMail">Email</label><input id="fMail" type="email">
+<div class="row" style="margin-top:16px;justify-content:flex-end"><button value="cancel">Batal</button><button class="pri" value="ok" id="saveProf">Simpan</button></div>
+</form>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
